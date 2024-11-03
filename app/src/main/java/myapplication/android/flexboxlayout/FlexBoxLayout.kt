@@ -132,9 +132,11 @@ class FlexBoxLayout @JvmOverloads constructor(
     }
 
     private fun getHorizontalPositions(view: View, r: Int, previousWidth: Int = 0): Pair<Int, Int> {
-        val left =
+        var left =
             if (alignment == LayoutAlignment.RIGHT) r - view.measuredWidth - previousWidth - view.marginLeft - INTERVAL
-            else previousWidth + view.marginLeft + INTERVAL
+            else previousWidth + view.marginLeft
+
+        if (previousWidth != 0) left += INTERVAL
 
         val right =
             if (alignment == LayoutAlignment.RIGHT) r - previousWidth - INTERVAL
